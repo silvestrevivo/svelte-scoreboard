@@ -1,6 +1,7 @@
 <script>
   import Navbar from "./Navbar.svelte";
   import Player from "./Player.svelte";
+  import AddPlayer from "./AddPlayer.svelte";
 
   let players = [
     {
@@ -16,10 +17,16 @@
       points: 34
     }
   ];
+
+  const addPlayer = e => {
+    const newPlayer = e.detail;
+    players = [...players, newPlayer];
+  };
 </script>
 
 <Navbar />
 <div class="container">
+  <AddPlayer on:addplayer={addPlayer} />
   {#each players as { name, points }}
     <Player {name} {points} />
   {:else}
