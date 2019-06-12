@@ -22,13 +22,17 @@
     const newPlayer = e.detail;
     players = [...players, newPlayer];
   };
+
+  const removePlayer = e => {
+    players = players.filter(item => item.name !== e.detail);
+  };
 </script>
 
 <Navbar />
 <div class="container">
   <AddPlayer on:addplayer={addPlayer} />
   {#each players as { name, points }}
-    <Player {name} {points} />
+    <Player {name} {points} on:removePlayer={removePlayer} />
   {:else}
     <p>No Players</p>
   {/each}
